@@ -3,11 +3,8 @@ import copy
 from analyzer import *
 from playingcards import *
 
-#Remove caps from non-class names. No camel case, underscores instead.
-#Use plurals in list. No 'x' variable names. Docstrings.
-#Initialize all variables in init.
-
 def display():
+    """Display the current state of the game to the player."""
     print table
     print "Your hand:"
     print table.players[0].hand
@@ -20,7 +17,7 @@ def get_options(hand):
     legal_options = []
     count = len(table.cards)
     if count == 0:
-        [options.append([x]) for x in hand.cards]
+        [options.append([card]) for card in hand.cards]
         for rank in get_tuples(hand).values():
             for tuple_ in rank:
                 options.append(tuple_)
@@ -29,7 +26,7 @@ def get_options(hand):
                 options.append(straight)
         return options
     elif len(table.cards) == 1:
-        [options.append([x]) for x in hand.cards]
+        [options.append([card]) for card in hand.cards]
     elif is_tuple(table.cards):
         for tuple_ in get_tuples(hand)[len(table.cards)]:
             options.append(tuple_)
